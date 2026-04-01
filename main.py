@@ -6,22 +6,31 @@ from routes.booking import router as booking_router
 from routes.user import router as user_router
 
 
-# app create karo pehle
 app = FastAPI()
+
+# Allowed Origins
+origins = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://servicehub-9hytq28h6-kk9479191s-projects.vercel.app",
+    "https://servicehub-blue.vercel.app",
+    "*"
+]
 
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# router include karo
+# routers
 app.include_router(worker_router)
 app.include_router(booking_router)
 app.include_router(user_router)
+
 
 @app.get("/")
 def home():
