@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Bookings from "./pages/Bookings";
+import Workers from "./pages/Workers";
+import AddWorker from "./pages/AddWorker";
+import WorkerProfile from "./pages/WorkerProfile";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Home from "./pages/Home";
+import WorkerDashboard from "./pages/WorkerDashboard";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/workers" element={<Workers />} />
+        <Route path="/add-worker" element={<AddWorker />} />
+        <Route path="/worker" element={<WorkerProfile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/worker-dashboard" element={<WorkerDashboard />} />
+        
+      </Routes>
+
+    </BrowserRouter>
   );
 }
 
