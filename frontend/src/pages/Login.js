@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
-
 const Login = () => {
 
   const [email, setEmail] = useState("");
@@ -11,55 +10,47 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const role = location.state?.role;   // 👈 important
+  const role = location.state?.role;
 
   const handleLogin = () => {
 
-let url = "";
+    let url = "";
 
-if(role === "worker"){
-  url = "http://127.0.0.1:8000/login-worker";
-}else{
-  url = "http://127.0.0.1:8000/login-user";
-}
+    if(role === "worker"){
+      url = "http://127.0.0.1:8000/login-worker";
+    }else{
+      url = "http://127.0.0.1:8000/login-user";
+    }
 
-axios.post(url, {
-email,
-password
-})
-.then(res => {
+    axios.post(url, {
+      email,
+      password
+    })
+    .then(res => {
 
-if(res.data.message === "Login successful"){
-localStorage.setItem("workerId", res.data.id);
-return {
-"message":"Login successful",
-"id": str(worker["_id"])
-}
-localStorage.setItem("user", email);
+      if(res.data.message === "Login successful"){
 
+        localStorage.setItem("workerId", res.data.id);
+        localStorage.setItem("user", email);
 
-if(role === "worker"){
-navigate("/worker-dashboard");   // 👈 worker redirect
-}else{
-navigate("/");                   // 👈 customer redirect
-}
+        if(role === "worker"){
+          navigate("/worker-dashboard");
+        }else{
+          navigate("/");
+        }
 
-}
-else{
-alert("Invalid Credentials")
-}
+      } else {
+        alert("Invalid Credentials")
+      }
 
-})
-.catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
 
-};
+  };
 
   return (
-
     <div className="flex justify-center items-center h-screen">
-
       <div className="shadow-lg p-8 rounded-lg w-96">
-
         <h2 className="text-2xl font-bold mb-6 text-center">
           Login
         </h2>
@@ -84,17 +75,9 @@ alert("Invalid Credentials")
         >
           Login
         </button>
-
       </div>
-
     </div>
-
   );
-  localStorage.setItem("workerId", res.data.id);
-return {
-"message":"Login successful",
-"id": str(worker["_id"])
-}
 
 };
 
