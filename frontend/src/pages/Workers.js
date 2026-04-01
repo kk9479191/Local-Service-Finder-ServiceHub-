@@ -14,7 +14,7 @@ function Workers() {
   const service = query.get("service");
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/workers")
+    axios.get("https://servicehub-backend-tz6u.onrender.com/workers")
       .then(res => {
         setWorkers(res.data);
       })
@@ -51,7 +51,7 @@ return;
 const phone = prompt("Enter Phone");
 const location = prompt("Enter Location");
 
-axios.post("http://127.0.0.1:8000/book", {
+axios.post("https://servicehub-backend-tz6u.onrender.com/book",{
 worker_name: worker.name,
 service: worker.service,
 user_name: user,

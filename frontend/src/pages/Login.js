@@ -17,9 +17,9 @@ const Login = () => {
     let url = "";
 
     if(role === "worker"){
-      url = "http://127.0.0.1:8000/login-worker";
+      url = "https://servicehub-backend-tz6u.onrender.com/login-worker";
     }else{
-      url = "http://127.0.0.1:8000/login-user";
+      url = "https://servicehub-backend-tz6u.onrender.com/login-user";
     }
 
     axios.post(url, {

@@ -21,7 +21,7 @@ function AddWorker() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://127.0.0.1:8000/add-worker", formData)
+    axios.post("https://servicehub-backend-tz6u.onrender.com/add-worker", formData)
       .then(() => {
         alert("Worker Added Successfully");
       })

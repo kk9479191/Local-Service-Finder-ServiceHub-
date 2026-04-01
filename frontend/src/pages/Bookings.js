@@ -7,7 +7,7 @@ const [bookings, setBookings] = useState([]);
 
 useEffect(()=>{
 
-axios.get("http://127.0.0.1:8000/bookings")
+axios.get("https://servicehub-backend-tz6u.onrender.com/book")
 .then(res=>{
 setBookings(res.data);
 })
