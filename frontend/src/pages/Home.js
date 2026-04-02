@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
 function Home() {
 
 const navigate = useNavigate();
+const [location, setLocation] = useState("Lucknow");
+
+const goToWorkers = (service) => {
+navigate(`/workers?service=${service}&location=${location}`);
+};
 
 return (
 
@@ -13,6 +18,23 @@ return (
 <Header />
 
 <div className="max-w-7xl mx-auto p-6">
+
+{/* Location Dropdown */}
+
+<div className="mb-6">
+
+<select
+value={location}
+onChange={(e)=>setLocation(e.target.value)}
+className="border p-2 rounded"
+>
+<option value="Lucknow">Lucknow</option>
+<option value="Kanpur">Kanpur</option>
+<option value="Delhi">Delhi</option>
+<option value="Noida">Noida</option>
+</select>
+
+</div>
 
 {/* Main Layout */}
 
@@ -31,42 +53,42 @@ Home services at your doorstep
 <div className="grid grid-cols-3 gap-4">
 
 <div 
-onClick={()=>navigate("/workers?service=Electrician")}
+onClick={()=>goToWorkers("Electrician")}
 className="bg-white shadow p-4 rounded-lg text-center hover:shadow-lg cursor-pointer"
 >
 ⚡ Electrician
 </div>
 
 <div 
-onClick={()=>navigate("/workers?service=Plumber")}
+onClick={()=>goToWorkers("Plumber")}
 className="bg-white shadow p-4 rounded-lg text-center hover:shadow-lg cursor-pointer"
 >
 🚰 Plumber
 </div>
 
 <div 
-onClick={()=>navigate("/workers?service=Cleaning")}
+onClick={()=>goToWorkers("Cleaning")}
 className="bg-white shadow p-4 rounded-lg text-center hover:shadow-lg cursor-pointer"
 >
 🧹 Cleaning
 </div>
 
 <div 
-onClick={()=>navigate("/workers?service=AC Repair")}
+onClick={()=>goToWorkers("AC Repair")}
 className="bg-white shadow p-4 rounded-lg text-center hover:shadow-lg cursor-pointer"
 >
 ❄ AC Repair
 </div>
 
 <div 
-onClick={()=>navigate("/workers?service=Painter")}
+onClick={()=>goToWorkers("Painter")}
 className="bg-white shadow p-4 rounded-lg text-center hover:shadow-lg cursor-pointer"
 >
 🎨 Painter
 </div>
 
 <div 
-onClick={()=>navigate("/workers?service=Carpenter")}
+onClick={()=>goToWorkers("Carpenter")}
 className="bg-white shadow p-4 rounded-lg text-center hover:shadow-lg cursor-pointer"
 >
 🪚 Carpenter
@@ -97,7 +119,6 @@ className="rounded-lg h-40 w-full object-cover col-span-2"
 />
 
 </div>
-
 
 </div>
 

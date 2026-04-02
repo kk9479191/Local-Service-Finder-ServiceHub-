@@ -12,6 +12,7 @@ function Workers() {
   const query = new URLSearchParams(location.search);
   const search = query.get("search");
   const service = query.get("service");
+  const selectedLocation = query.get("location");   // 👈 NEW
 
   useEffect(() => {
     axios.get("https://servicehub-backend-tz6u.onrender.com/workers")
@@ -28,6 +29,8 @@ function Workers() {
 
       (!service || worker.service === service) &&
 
+      (!selectedLocation || worker.location === selectedLocation) &&   // 👈 NEW
+
       (!search ||
         worker.name?.toLowerCase().includes(search.toLowerCase()) ||
         worker.service?.toLowerCase().includes(search.toLowerCase()) ||
@@ -41,25 +44,25 @@ function Workers() {
   // Booking Function
   const bookWorker = (worker) => {
 
-const user = localStorage.getItem("user");
+    const user = localStorage.getItem("user");
 
-if(!user){
-alert("Please login first");
-return;
-}
+    if(!user){
+      alert("Please login first");
+      return;
+    }
 
-const phone = prompt("Enter Phone");
-const location = prompt("Enter Location");
+    const phone = prompt("Enter Phone");
+    const location = prompt("Enter Location");
 
-axios.post("https://servicehub-backend-tz6u.onrender.com/book",{
-worker_name: worker.name,
-service: worker.service,
-user_name: user,
-phone,
-location
-})
+    axios.post("https://servicehub-backend-tz6u.onrender.com/book",{
+      worker_name: worker.name,
+      service: worker.service,
+      user_name: user,
+      phone,
+      location
+    });
 
-};
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-6">
