@@ -1,9 +1,9 @@
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient("mongodb+srv://Karan:Karan1234@cluster0.49db8fz.mongodb.net/servicehub?retryWrites=true&w=majority")
 
-db = client["local_service"]
+db = client["servicehub"]
 
-users = db["users"]
 workers = db["workers"]
 bookings = db["bookings"]
+users = db["users"]
