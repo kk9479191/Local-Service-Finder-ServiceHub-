@@ -1,33 +1,41 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginModal from "./LoginModal";
 
 function Header() {
 
-const [search, setSearch] = useState("");
-const [location, setLocation] = useState("Lucknow");
-const [showModal, setShowModal] = useState(false);
-
 const navigate = useNavigate();
 
+const [search, setSearch] = useState("");
+const [location, setLocation] = useState("Lucknow");
+
+const handleSearch = (e) => {
+if(e.key === "Enter"){
+navigate(`/workers?search=${search}&location=${location}`)
+}
+};
+
 const handleLocationChange = (e) => {
+setLocation(e.target.value);
 localStorage.setItem("location", e.target.value);
 };
 
 return (
 
-<div className="bg-white shadow-md p-4">
+<div className="flex justify-between items-center p-4 shadow-md">
 
-<div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-
-<h1 className="text-2xl font-bold">
+<h1 
+className="text-2xl font-bold cursor-pointer"
+onClick={()=>navigate("/")}
+>
 ServiceHub
 </h1>
 
-{/* Location Dropdown */}
+<div className="flex gap-4 items-center">
+
 <select 
+value={location}
 onChange={handleLocationChange}
-className="border rounded px-2 py-1"
+className="border px-2 py-1 rounded"
 >
 <option value="Lucknow">Lucknow</option>
 <option value="Kanpur">Kanpur</option>
@@ -35,31 +43,16 @@ className="border rounded px-2 py-1"
 <option value="Noida">Noida</option>
 </select>
 
-{/* Search */}
 <input
 type="text"
 placeholder="Search services..."
+className="border px-3 py-1 rounded w-80"
 value={search}
 onChange={(e)=>setSearch(e.target.value)}
 onKeyDown={handleSearch}
-className="border px-4 py-2 rounded-lg w-1/3"
 />
 
-<div className="flex gap-4 text-xl">
-
-<button onClick={()=>setShowModal(true)}>
-👤
-</button>
-
-<button onClick={()=>navigate("/bookings")}>
-📋
-</button>
-
 </div>
-
-</div>
-
-{showModal && <LoginModal setShowModal={setShowModal} />}
 
 </div>
 
