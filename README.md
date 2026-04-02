@@ -198,10 +198,7 @@ http://localhost:3000
 👨‍💻 Author
 
 Karan Kumar Genaram
-
 B.Tech CSE (Cloud Computing + AI)
-
-Shri Ramswaroop Memorial University
 
 GitHub
 https://github.com/kk9479191
