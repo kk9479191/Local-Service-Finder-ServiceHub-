@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
 function Home() {
 
 const navigate = useNavigate();
-const [location, setLocation] = useState("Lucknow");
 
 const goToWorkers = (service) => {
+
+const location = localStorage.getItem("location") || "Lucknow";
+
 navigate(`/workers?service=${service}&location=${location}`);
+
 };
 
 return (
