@@ -19,23 +19,6 @@ return (
 
 <div className="max-w-7xl mx-auto p-6">
 
-{/* Location Dropdown */}
-
-<div className="mb-6">
-
-<select
-value={location}
-onChange={(e)=>setLocation(e.target.value)}
-className="border p-2 rounded"
->
-<option value="Lucknow">Lucknow</option>
-<option value="Kanpur">Kanpur</option>
-<option value="Delhi">Delhi</option>
-<option value="Noida">Noida</option>
-</select>
-
-</div>
-
 {/* Main Layout */}
 
 <div className="grid md:grid-cols-2 gap-8">
