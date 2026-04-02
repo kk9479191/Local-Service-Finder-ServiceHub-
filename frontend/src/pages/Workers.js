@@ -42,27 +42,33 @@ function Workers() {
   });
 
   // Booking Function
-  const bookWorker = (worker) => {
+ const bookWorker = (worker) => {
 
-    const user = localStorage.getItem("user");
+  const user = localStorage.getItem("user");
 
-    if(!user){
-      alert("Please login first");
-      return;
-    }
+  if(!user){
+    alert("Please login first");
+    return;
+  }
 
-    const phone = prompt("Enter Phone");
-    const location = prompt("Enter Location");
+  const phone = prompt("Enter Phone");
+  const location = prompt("Enter Location");
 
-    axios.post("https://servicehub-backend-tz6u.onrender.com/book",{
-      worker_name: worker.name,
-      service: worker.service,
-      user_name: user,
-      phone,
-      location
-    });
+  axios.post("https://servicehub-backend-tz6u.onrender.com/book",{
+    worker_id: worker._id,        // 👈 important
+    worker_name: worker.name,
+    service: worker.service,
+    customer_name: user,          // 👈 change user_name → customer_name
+    phone,
+    location,
+    status: "Pending"             // 👈 add status
+  })
+  .then(()=>{
+    alert("Booking Successful")
+  })
+  .catch(err=>console.log(err))
 
-  };
+};
 
   return (
     <div className="max-w-6xl mx-auto p-6">

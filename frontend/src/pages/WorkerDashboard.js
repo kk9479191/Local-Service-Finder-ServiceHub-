@@ -16,7 +16,7 @@ fetchBookings();
 const fetchBookings = () => {
 
 axios.get(
-`http://localhost:8000/worker-bookings/${workerId}`
+`https://servicehub-backend-tz6u.onrender.com/worker-bookings/${workerId}`
 )
 .then(res=>setBookings(res.data))
 .catch(err=>console.log(err))
@@ -28,7 +28,7 @@ const updateStatus = async(id,status)=>{
 try{
 
 await axios.put(
-`http://localhost:8000/update-booking/${id}`,
+`https://servicehub-backend-tz6u.onrender.com/update-booking/${id}`,
 {status}
 )
 
@@ -65,19 +65,19 @@ className="border p-4 mb-3 rounded shadow">
 <p>Service: {b.service}</p>
 <p>Status: {b.status}</p>
 
-{b.status === "pending" && (
+{(b.status === "Pending" || b.status === "pending") && (
 
 <div className="mt-2">
 
 <button
-onClick={()=>updateStatus(b._id,"accepted")}
+onClick={()=>updateStatus(b._id,"Accepted")}
 className="bg-green-600 text-white px-3 py-1 mr-2 rounded"
 >
 Accept
 </button>
 
 <button
-onClick={()=>updateStatus(b._id,"rejected")}
+onClick={()=>updateStatus(b._id,"Rejected")}
 className="bg-red-600 text-white px-3 py-1 rounded"
 >
 Reject

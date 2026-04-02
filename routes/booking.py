@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from models.booking import Booking
 from database import bookings
-from bson import ObjectId   # 👈 important
+from bson import ObjectId
 
 router = APIRouter()
 
@@ -10,7 +10,10 @@ router = APIRouter()
 @router.post("/book")
 def book_worker(booking: Booking):
 
-    bookings.insert_one(booking.dict())
+    data = booking.dict()
+    data["status"] = "Pending"   # 👈 default status
+
+    bookings.insert_one(data)
 
     return {"message":"Booking successful"}
 
@@ -24,7 +27,7 @@ def get_worker_bookings(worker_id: str):
     for booking in data:
         booking["_id"] = str(booking["_id"])
 
-    return data   # 👈 ye missing tha
+    return data
 
 
 # Update booking
