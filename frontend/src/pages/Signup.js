@@ -1,35 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Signup() {
 
 const [name,setName]=useState("");
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
+
 const navigate = useNavigate();
-const [role, setRole] = useState("");
+const location = useLocation();
+
+const role = location.state?.role;   // 👈 important
 
 const handleSignup = async () => {
   try {
 
-    if(role === "customer"){
+    if(role === "worker"){
       await axios.post(
-        "http://localhost:8000/signup-user",
+        "https://servicehub-backend-tz6u.onrender.com/signup-worker",
         { name, email, password }
       );
     } 
     else {
       await axios.post(
-        "http://localhost:8000/signup-worker",
+        "https://servicehub-backend-tz6u.onrender.com/signup-user",
         { name, email, password }
       );
     }
 
     alert("Signup successful");
 
-    navigate("/login", { state: { role } });   // 👈 redirect
+    navigate("/login", { state: { role } });
 
   } catch (error) {
     console.log(error);
@@ -40,7 +42,9 @@ return(
 
 <div className="max-w-md mx-auto mt-20 shadow-lg p-6 rounded">
 
-<h2 className="text-2xl font-bold mb-4">Signup</h2>
+<h2 className="text-2xl font-bold mb-4">
+Signup as {role}
+</h2>
 
 <input
 type="text"

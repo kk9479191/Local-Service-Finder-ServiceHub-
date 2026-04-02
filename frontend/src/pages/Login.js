@@ -30,12 +30,11 @@ const Login = () => {
 
       if(res.data.message === "Login successful"){
 
-        localStorage.setItem("workerId", res.data.id);
-        localStorage.setItem("user", email);
-
         if(role === "worker"){
+          localStorage.setItem("workerId", res.data.id);
           navigate("/worker-dashboard");
         }else{
+          localStorage.setItem("user", email);
           navigate("/");
         }
 

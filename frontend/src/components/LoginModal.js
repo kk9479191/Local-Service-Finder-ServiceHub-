@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-
 
 const LoginModal = ({ setShowModal }) => {
 
 const navigate = useNavigate();
-const [role, setRole] = useState("");
-const [mode, setMode] = useState("");
 
 return (
 
@@ -37,7 +34,7 @@ Login / Signup
 {/* Customer Login */}
 <button 
 onClick={()=>{
-navigate("/login", { state: { role: "customer" } })
+navigate("/login", { state: { role: "user" } })
 }}
 className="bg-blue-600 text-white px-4 py-2 rounded w-full"
 >
@@ -47,7 +44,7 @@ Login as Customer
 {/* Customer Signup */}
 <button 
 onClick={()=>{
-navigate("/signup", { state: { role: "customer" } })
+navigate("/signup", { state: { role: "user" } })
 }}
 className="bg-blue-400 text-white px-4 py-2 rounded w-full"
 >
