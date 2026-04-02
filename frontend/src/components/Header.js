@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginModal from "./LoginModal";
 
 function Header() {
 
@@ -9,6 +10,8 @@ const [search, setSearch] = useState("");
 const [location, setLocation] = useState(
 localStorage.getItem("location") || "Lucknow"
 );
+
+const [showLogin, setShowLogin] = useState(false);
 
 const handleSearch = (e) => {
 if(e.key === "Enter"){
@@ -33,7 +36,6 @@ onClick={()=>navigate("/")}
 >
 ServiceHub
 </h1>
-
 
 {/* Location + Search */}
 
@@ -61,12 +63,11 @@ onKeyDown={handleSearch}
 
 </div>
 
-
 {/* Icons */}
 
 <div className="flex gap-4">
 
-<button onClick={()=>navigate("/login")}>
+<button onClick={()=>setShowLogin(true)}>
 👤
 </button>
 
@@ -75,6 +76,12 @@ onKeyDown={handleSearch}
 </button>
 
 </div>
+
+{/* Login Modal */}
+
+{showLogin && (
+<LoginModal close={()=>setShowLogin(false)} />
+)}
 
 </div>
 
