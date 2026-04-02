@@ -10,10 +10,8 @@ const [showModal, setShowModal] = useState(false);
 
 const navigate = useNavigate();
 
-const handleSearch = (e) => {
-if (e.key === "Enter") {
-navigate(`/workers?search=${search}&location=${location}`);
-}
+const handleLocationChange = (e) => {
+localStorage.setItem("location", e.target.value);
 };
 
 return (
@@ -27,17 +25,14 @@ ServiceHub
 </h1>
 
 {/* Location Dropdown */}
-<select
-value={location}
-onChange={(e)=>setLocation(e.target.value)}
-className="border px-3 py-2 rounded-lg"
+<select 
+onChange={handleLocationChange}
+className="border rounded px-2 py-1"
 >
-
-<option>Lucknow</option>
-<option>Delhi</option>
-<option>Kanpur</option>
-<option>Noida</option>
-
+<option value="Lucknow">Lucknow</option>
+<option value="Kanpur">Kanpur</option>
+<option value="Delhi">Delhi</option>
+<option value="Noida">Noida</option>
 </select>
 
 {/* Search */}
