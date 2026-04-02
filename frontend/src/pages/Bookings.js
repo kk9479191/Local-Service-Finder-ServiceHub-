@@ -5,9 +5,13 @@ function Bookings(){
 
 const [bookings, setBookings] = useState([]);
 
+const user = localStorage.getItem("user");
+
 useEffect(()=>{
 
-axios.get("https://servicehub-backend-tz6u.onrender.com/book")
+axios.get(
+`https://servicehub-backend-tz6u.onrender.com/customer-bookings/${user}`
+)
 .then(res=>{
 setBookings(res.data);
 })
@@ -26,6 +30,7 @@ Booking Status
 <div className="grid md:grid-cols-2 gap-6">
 
 {bookings.map((booking,index)=>(
+
 <div key={index} className="shadow p-4 rounded">
 
 <h2 className="font-bold">
@@ -33,15 +38,15 @@ Booking Status
 </h2>
 
 <p>Service: {booking.service}</p>
-<p>User: {booking.user_name}</p>
 <p>Phone: {booking.phone}</p>
 <p>Location: {booking.location}</p>
 
 <p className="text-yellow-600 font-bold">
-Status: Pending
+Status: {booking.status}
 </p>
 
 </div>
+
 ))}
 
 </div>

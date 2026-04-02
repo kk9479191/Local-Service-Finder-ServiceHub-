@@ -42,31 +42,42 @@ function Workers() {
   });
 
   // Booking Function
- const bookWorker = (worker) => {
+const bookWorker = async (worker) => {
 
-  const user = localStorage.getItem("user");
+const user = localStorage.getItem("user");
 
-  if(!user){
-    alert("Please login first");
-    return;
-  }
+if(!user){
+alert("Please login first");
+return;
+}
 
-  const phone = prompt("Enter Phone");
-  const location = prompt("Enter Location");
+const phone = prompt("Enter Phone");
+const location = prompt("Enter Location");
 
-  axios.post("https://servicehub-backend-tz6u.onrender.com/book",{
-    worker_id: worker._id,        // 👈 important
-    worker_name: worker.name,
-    service: worker.service,
-    customer_name: user,          // 👈 change user_name → customer_name
-    phone,
-    location,
-    status: "Pending"             // 👈 add status
-  })
-  .then(()=>{
-    alert("Booking Successful")
-  })
-  .catch(err=>console.log(err))
+try{
+
+await axios.post(
+"https://servicehub-backend-tz6u.onrender.com/book",
+{
+worker_id: worker._id,
+worker_name: worker.name,
+service: worker.service,
+customer_name: user,
+customer_email: user,   // 👈 add this
+phone,
+location,
+status:"Pending"
+}
+);
+
+alert("Booking Successful")
+
+}catch(error){
+
+console.log(error);
+alert("Booking Failed")
+
+}
 
 };
 

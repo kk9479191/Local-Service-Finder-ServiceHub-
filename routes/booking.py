@@ -17,6 +17,15 @@ def book_worker(booking: Booking):
 
     return {"message":"Booking successful"}
 
+@router.get("/customer-bookings/{email}")
+def get_customer_bookings(email: str):
+
+    data = list(bookings.find({"customer_email": email}))
+
+    for booking in data:
+        booking["_id"] = str(booking["_id"])
+
+    return data
 
 # Worker bookings
 @router.get("/worker-bookings/{worker_id}")
