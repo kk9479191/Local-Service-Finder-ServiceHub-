@@ -1,6 +1,12 @@
 🚀 ServiceHub – Local Service Finder
 
-ServiceHub is a **Full Stack Local Service Finder Web Application** similar to **Urban Company**, where users can find and book local service providers based on **location and service type**.
+ServiceHub is a Full Stack Local Service Finder Web Application inspired by platforms like Urban Company. The platform helps users easily find and book trusted local service providers such as electricians, plumbers, cleaners, painters, AC repair technicians, and carpenters based on their selected location.
+
+The application provides a seamless user experience with location-based filtering, service search, worker profiles, booking system, and worker dashboards. Users can explore available services, view worker details, and book services directly, while workers can manage bookings through their dedicated dashboard.
+
+This project demonstrates full-stack development skills, including frontend UI development, backend API creation, database integration, authentication system, and deployment using modern technologies.
+
+ServiceHub is designed to solve real-world problems by connecting customers with nearby service providers efficiently and quickly.
 
 🌐 Live Demo
 
@@ -192,7 +198,9 @@ http://localhost:3000
 👨‍💻 Author
 
 Karan Kumar Genaram
+
 B.Tech CSE (Cloud Computing + AI)
+
 Shri Ramswaroop Memorial University
 
 GitHub
