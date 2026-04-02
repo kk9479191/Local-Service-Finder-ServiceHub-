@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const role = location.state?.role;
+  const role = location.state?.role || localStorage.getItem("role");
 
   const handleLogin = () => {
 
@@ -28,13 +28,17 @@ const Login = () => {
     })
     .then(res => {
 
+      console.log("Login Response:", res.data);
+
       if(res.data.message === "Login successful"){
 
         if(role === "worker"){
           localStorage.setItem("workerId", res.data.id);
+          localStorage.setItem("role", "worker");
           navigate("/worker-dashboard");
         }else{
           localStorage.setItem("user", email);
+          localStorage.setItem("role", "user");
           navigate("/");
         }
 
@@ -43,7 +47,10 @@ const Login = () => {
       }
 
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      alert("Login Error");
+    });
 
   };
 
