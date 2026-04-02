@@ -9,15 +9,18 @@ const user = localStorage.getItem("user");
 
 useEffect(()=>{
 
+if(!user) return;
+
 axios.get(
 `https://servicehub-backend-tz6u.onrender.com/customer-bookings/${user}`
 )
 .then(res=>{
+console.log("Bookings:", res.data);
 setBookings(res.data);
 })
 .catch(err=>console.log(err));
 
-},[]);
+},[user]);
 
 return(
 
@@ -26,6 +29,14 @@ return(
 <h1 className="text-3xl font-bold mb-6">
 Booking Status
 </h1>
+
+{bookings.length === 0 ? (
+
+<p className="text-gray-500">
+No bookings yet
+</p>
+
+) : (
 
 <div className="grid md:grid-cols-2 gap-6">
 
@@ -50,6 +61,8 @@ Status: {booking.status}
 ))}
 
 </div>
+
+)}
 
 </div>
 

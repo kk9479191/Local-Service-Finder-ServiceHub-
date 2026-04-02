@@ -20,18 +20,21 @@ def book_worker(booking: Booking):
 @router.get("/customer-bookings/{email}")
 def get_customer_bookings(email: str):
 
-    data = list(bookings.find({"customer_email": email}))
+    data = list(bookings.find({
+        "customer_name": {"$regex": email, "$options": "i"}
+    }))
 
     for booking in data:
         booking["_id"] = str(booking["_id"])
 
     return data
-
 # Worker bookings
 @router.get("/worker-bookings/{worker_id}")
 def get_worker_bookings(worker_id: str):
 
-    data = list(bookings.find({"worker_id": worker_id}))
+    data = list(bookings.find({
+        "worker_id": worker_id
+    }))
 
     for booking in data:
         booking["_id"] = str(booking["_id"])
