@@ -35,7 +35,7 @@ https://servicehub-backend-tz6u.onrender.com
 * Worker dashboard
 * View assigned bookings
 * Booking management
-* Accept / Reject booking (Upcoming)
+* Accept / Reject booking
 
 🔧 Services Available
 
